@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { logout } from "../Context/services/authService";
+import { logout } from "../context/services/authService";
 import { FaUserCircle } from "react-icons/fa";
 import "./style.css";
 

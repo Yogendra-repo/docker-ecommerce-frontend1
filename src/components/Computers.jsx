@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../Context/CartContext";
-import { getProducts } from "../Context/services/productService";
+import { useCart } from "../context/CartContext";
+import { getProducts } from "../context/services/productService";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getProducts } from "../Context/services/productService";
-import { addToCart } from "../Context/services/cartService";
+import { getProducts } from "../context/services/productService";
+import { addToCart } from "../context/services/cartService";
 import "./style.css";
 
 const BASE_URL = 'http://localhost:9090/back1';
