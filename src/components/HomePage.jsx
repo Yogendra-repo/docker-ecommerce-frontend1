@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { logout } from "../services/authService";
+import { logout } from "../Context/services/authService";
 import { FaUserCircle } from "react-icons/fa";
 import "./style.css";
 
@@ -33,7 +33,7 @@ const HomePage = () => {
     <div className="container">
       {/* Header */}
       <div className="header">
-        <h1>E-Commerce</h1>
+        <h1>E-Commerce_2300032284</h1>
         <div className="header-right">
           {isAuthenticated ? (
             <div className="profile-menu">

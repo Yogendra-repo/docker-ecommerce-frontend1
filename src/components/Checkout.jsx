@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { processPayment } from "../services/paymentService";
+import { processPayment } from "../Context/services/paymentService";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {

@@ -1,39 +1,41 @@
 import React, { useEffect, useState } from "react";
-import { useCart } from "../Context/CartContext";
 import { getProducts } from "../Context/services/productService";
-import { useNavigate } from "react-router-dom";
+import { addToCart } from "../Context/services/cartService";
 import "./style.css";
 
 const BASE_URL = 'http://localhost:9090/back1';
 
-const Computers = () => {
+const ProductPage = ({ category }) => {
   const [products, setProducts] = useState([]);
-  const { addToCart } = useCart();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getProducts("computers"); // Fetch only computer category
-      setProducts(data);
+      try {
+        const data = await getProducts(category || "");
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
     fetchProducts();
-  }, []);
+  }, [category]);
 
-  const handleAddToCart = (product) => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("Please login to add items to the cart!");
-      navigate("/login");
-      return;
+  const handleAddToCart = async (product) => {
+    try {
+      await addToCart(product.id);
+      alert("Product added to cart successfully!");
+    } catch (error) {
+      console.error("Error adding to cart:", error);
     }
-
-    addToCart(product);
-    navigate("/cart"); // Redirect to cart page after adding product
   };
 
   return (
     <div className="product-container">
-      <h2>Computers</h2>
+      <h2>
+        {category
+          ? category.charAt(0).toUpperCase() + category.slice(1)
+          : "All Products"}
+      </h2>
       <div className="product-grid">
         {products.length > 0 ? (
           products.map((product) => (
@@ -42,19 +44,19 @@ const Computers = () => {
                 src={`${BASE_URL}/api/products/images/${product.imagePath}`}
                 alt={product.name}
               />
-              <h4>{product.name}</h4>
-              <p>${product.price.toFixed(2)}</p>
+              <h3>{product.name}</h3>
+              <p>Price: ${product.price}</p>
               <button onClick={() => handleAddToCart(product)}>
                 Add to Cart
               </button>
             </div>
           ))
         ) : (
-          <p>No computers available.</p>
+          <p>No products available in this category.</p>
         )}
       </div>
     </div>
   );
 };
 
-export default Computers;
+export default ProductPage;

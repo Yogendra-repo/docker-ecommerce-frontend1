@@ -2,9 +2,9 @@ import { useState } from 'react'
 import './App.css'
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
-import AboutUs from './components/Aboutus';
+import AboutUs from './components/AboutUs';
 import Computers from './components/Computers';
 import Mobiles from './components/Mobiles';
 import Laptops from './components/Laptops';
@@ -22,7 +22,7 @@ function App() {
   
   return (
     <>
-    <Router>
+    <BrowserRouter basename="/ecommerce">
       <Routes>
         <Route path="/" element={<HomePage />}>
           <Route index element={<AboutUs />} />
@@ -40,7 +40,7 @@ function App() {
           <Route path="orders" element={<Orders />} />
         </Route>
       </Routes>
-    </Router>
+    </BrowserRouter>
     </>
   )
 }

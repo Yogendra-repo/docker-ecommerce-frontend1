@@ -1,15 +1,22 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8081/auth";
+const API_URL = "http://localhost:9090/back1/auth"; // Changed to 8080 (Tomcat default)
 
 export const login = async (username, password) => {
-  const response = await axios.post(`${API_URL}/login`, { username, password });
+  const response = await axios.post(`${API_URL}/login`, { 
+    username, 
+    password 
+  });
   localStorage.setItem("token", response.data);
   return response.data;
 };
 
 export const signup = async (username, email, password) => {
-  return axios.post(`${API_URL}/signup`, { username, email, password });
+  return axios.post(`${API_URL}/signup`, { 
+    username, 
+    email, 
+    password 
+  });
 };
 
 export const logout = () => {

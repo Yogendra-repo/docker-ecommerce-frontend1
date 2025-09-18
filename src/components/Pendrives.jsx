@@ -6,14 +6,14 @@ import "./style.css";
 
 const BASE_URL = 'http://localhost:9090/back1';
 
-const Laptops = () => {
+const Pendrives = () => {
   const [products, setProducts] = useState([]);
   const { addToCart } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const data = await getProducts("laptops"); // Fetch only laptop category
+      const data = await getProducts("pendrives"); // Fetch only pendrive category
       setProducts(data);
     };
     fetchProducts();
@@ -26,13 +26,13 @@ const Laptops = () => {
 
   return (
     <div className="product-container">
-      <h2>Laptops</h2>
+      <h2>Pendrives</h2>
       <div className="product-grid">
         {products.length > 0 ? (
           products.map((product) => (
             <div key={product.id} className="product-card">
               <img
-                src={`${BASE_URL}/api/products/images/${product.imagePath}`}
+                src={'${BASE_URL}/api/products/images/${product.imagePath}'}
                 alt={product.name}
               />
               <h4>{product.name}</h4>
@@ -41,11 +41,11 @@ const Laptops = () => {
             </div>
           ))
         ) : (
-          <p>No laptops available.</p>
+          <p>No pendrives available.</p>
         )}
       </div>
     </div>
   );
 };
 
-export default Laptops;
+export default Pendrives;
